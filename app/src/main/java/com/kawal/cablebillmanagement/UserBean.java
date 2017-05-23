@@ -1,42 +1,37 @@
 package com.kawal.cablebillmanagement;
 
+import android.widget.Spinner;
+
 /**
  * Created by kawaldeep on 5/9/2017.
  */
 
 public class UserBean {
     int id;
-    String name;
     String uName;
     String uPhone;
     String uEmail;
     String uPassword;
     String uAddress;
     int UserType;
+    String connectionType;
 
     public UserBean() {
     }
 
-    public UserBean(int id, String name, String uName, String uPhone, String uEmail, String uPassword,  String uAddress, int userType) {
+    public UserBean(int id, String uName, String uPhone, String uEmail, String uPassword,  String uAddress, int userType,String connectionType) {
         this.id = id;
-        this.name = name;
         this.uName = uName;
         this.uPhone = uPhone;
         this.uEmail = uEmail;
         this.uPassword = uPassword;
         this.uAddress = uAddress;
         UserType = userType;
+        this.connectionType = connectionType;
     }
 
-    public UserBean(int id, String uName, String uPhone, String uEmail, String uPassword, String uAddress, int userType) {
-        this.id = id;
-        this.uName = uName;
-        this.uPhone = uPhone;
-        this.uEmail = uEmail;
-        this.uPassword = uPassword;
-        this.uAddress = uAddress;
-        UserType = userType;
-    }
+
+
 
     public int getId() {
         return id;
@@ -46,15 +41,7 @@ public class UserBean {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getuName() {
+       public String getuName() {
         return uName;
     }
 
@@ -102,17 +89,26 @@ public class UserBean {
         UserType = userType;
     }
 
+    public String getConnection() {
+        return connectionType;
+    }
+
+    public void setConnection(String connection) {
+        this.connectionType = connection;
+    }
+
     @Override
     public String toString() {
         return "UserBean{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
                 ", uName='" + uName + '\'' +
                 ", uPhone='" + uPhone + '\'' +
                 ", uEmail='" + uEmail + '\'' +
                 ", uPassword='" + uPassword + '\'' +
                 ", uAddress='" + uAddress + '\'' +
                 ", UserType=" + UserType +
+                ", connection='" + connectionType + '\'' +
                 '}';
     }
+
 }

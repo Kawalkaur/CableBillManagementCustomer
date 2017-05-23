@@ -1,8 +1,17 @@
 package com.kawal.cablebillmanagement;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,24 +21,44 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class CustomerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    boolean flag;
+
+    void views(){
+        preferences=getSharedPreferences(Util.PREFS_NAME,MODE_PRIVATE);
+        editor = preferences.edit();
+
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 //        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:9888777921"));
+                if (ActivityCompat.checkSelfPermission(CustomerHomeActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
             }
+
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -40,6 +69,7 @@ public class CustomerHomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        views();
     }
 
     @Override
@@ -88,11 +118,48 @@ public class CustomerHomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_logout) {
 
-        } else if (id == R.id.nav_send) {
+            AlertDialog.Builder ad =  new  AlertDialog.Builder(CustomerHomeActivity.this);
+            ad.setTitle("Do You Wish to Logout");
+            ad.setCancelable(false);
+            ad.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
 
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    editor.clear();
+                    editor.commit();
+                    Intent i=new Intent(CustomerHomeActivity.this,CustomerRegistration.class);
+                    startActivity(i);
+                    // finishAffinity();
+
+                }
+            });
+            ad.setPositiveButton("No",null);
+            ad.create().show();
+
+        } else if (id == R.id.nav_Disconnect) {
+            AlertDialog.Builder ad =  new  AlertDialog.Builder(CustomerHomeActivity.this);
+            ad.setTitle("Really wish to disconnect your Service ?");
+            ad.setCancelable(false);
+            ad.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+
+                    editor.clear();
+                    editor.commit();
+                    Intent i=new Intent(CustomerHomeActivity.this,CustomerRegistration.class);
+                    startActivity(i);
+                    // finishAffinity();
+
+                }
+            });
+            ad.setPositiveButton("No",null);
+            ad.create().show();
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

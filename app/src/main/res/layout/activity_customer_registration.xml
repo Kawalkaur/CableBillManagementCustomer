@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+  android:background="@drawable/images"
     tools:context="com.kawal.cablebillmanagement.CustomerRegistration">
     <LinearLayout
         android:orientation="vertical"
@@ -22,6 +23,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:id="@+id/input_name"
             android:inputType="textPersonName"
             android:hint="Name"/>
@@ -32,12 +35,16 @@
             android:id="@+id/input_mobile"
             android:inputType="phone"
             android:hint="Mobile Number"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:layout_marginTop="10dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/input_email"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:inputType="textEmailAddress"
             android:hint="Email"
             android:layout_marginTop="10dp"/>
@@ -47,6 +54,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/input_password"
             android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:hint="Password"
             android:layout_marginTop="10dp"/>
 
@@ -57,8 +66,19 @@
             android:id="@+id/input_address"
             android:inputType="textPostalAddress"
             android:hint="Address"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:layout_marginTop="10dp"/>
 
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_marginTop="10dp">
+
+        </Spinner>
 
 
         <Button
@@ -72,13 +92,13 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"/>
 
-        <TextView android:id="@+id/link_login"
+        <!--<TextView android:id="@+id/link_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="Already a member? Login"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="16dip"/> -->
 
 
     </LinearLayout>
