@@ -16,6 +16,11 @@ public class Util {
     public static final String INSERT_USER_PHP = "http://cablebill.esy.es/insertUser.php";
     public static final String DELETE_USER_PHP = "http://cablebill.esy.es/deleteUser.php";
     public static final String RETRIEVE_USER_CUS_PHP = "http://cablebill.esy.es/retrieveUserCus.php";
+    public static final String CHANGE_STATUS_PHP = "http://cablebill.esy.es/changeStatus.php";
+    public static final String UPDATE_USER_PHP = "http://cablebill.esy.es/updateUser.php";
+    public static final String LOGIN_PHP = "http://cablebill.esy.es/login.php";
+
+
 
 
 }
